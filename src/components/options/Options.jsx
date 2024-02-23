@@ -1,22 +1,19 @@
-function Option() {
+const Option = ({ feedbacks, onClick }) => {
+  const handleClick = (feedbackType) => {
+    onClick(feedbackType);
+  };
+
   return (
     <div>
-      <ul>
-        <li>
-          <button>good</button>
-        </li>
-        <li>
-          <button>bad</button>
-        </li>
-        <li>
-          <button>neutral</button>
-        </li>
-        <li>
-          <button>reset</button>
-        </li>
-      </ul>
+      {Object.keys(feedbacks).map((feedbackType) => (
+        <div key={feedbackType}>
+          <button onClick={() => handleClick(feedbackType)}>
+            {feedbackType}
+          </button>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default Option;
