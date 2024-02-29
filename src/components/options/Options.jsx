@@ -1,6 +1,6 @@
-import css from "./option.module.css";
+import css from "./options.module.css";
 
-function Option({ feedbacks, onClick, totalFeedback, resetFeedback }) {
+function Options({ feedbacks, onClick, totalFeedback, resetFeedback }) {
   const handleClick = (feedbackType) => {
     onClick(feedbackType);
   };
@@ -25,4 +25,4 @@ function Option({ feedbacks, onClick, totalFeedback, resetFeedback }) {
   );
 }
 
-export default Option;
+export default Options;

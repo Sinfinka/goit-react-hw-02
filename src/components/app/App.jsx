@@ -1,5 +1,5 @@
 import Description from "../description/Description";
-import Option from "../options/Options";
+import Options from "../options/Options";
 import Feedback from "../feedback/Feedback";
 import Notification from "./../notification/Notification";
 import { useState, useEffect } from "react";
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className={css.conteiner}>
       <Description />
-      <Option
+      <Options
         feedbacks={feedbacks}
         onClick={updateFeedback}
         totalFeedback={totalFeedback}
