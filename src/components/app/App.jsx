@@ -1,8 +1,9 @@
 import Description from "../description/Description";
 import Option from "../options/Options";
 import Feedback from "../feedback/Feedback";
-
+import Notification from "./../notification/Notification";
 import { useState, useEffect } from "react";
+import css from "./App.module.css";
 
 function App() {
   const [feedbacks, setFeedbacks] = useState(
@@ -12,6 +13,11 @@ function App() {
         neutral: 0,
         bad: 0,
       }
+  );
+
+  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+  const positiveFeedbacks = Math.round(
+    ((feedbacks.good + feedbacks.neutral) / totalFeedback) * 100
   );
 
   useEffect(() => {
@@ -25,12 +31,29 @@ function App() {
     }));
   };
 
+  const resetFeedback = () => {
+    setFeedbacks({ good: 0, neutral: 0, bad: 0 });
+  };
+
   return (
-    <>
+    <div className={css.conteiner}>
       <Description />
-      <Option feedbacks={feedbacks} onClick={updateFeedback} />
-      <Feedback feedbacks={feedbacks} />
-    </>
+      <Option
+        feedbacks={feedbacks}
+        onClick={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
+      />
+      {totalFeedback ? (
+        <Feedback
+          feedbacks={feedbacks}
+          positiveFeedbacks={positiveFeedbacks}
+          totalFeedback={totalFeedback}
+        />
+      ) : (
+        <Notification />
+      )}
+    </div>
   );
 }
 
